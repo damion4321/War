@@ -15,6 +15,8 @@
         <img src="./images/Logo.jpg" />
       </div>
       <h2 id="directions">
+        <h3 id="swords">
+          <img src="./images/CrossedSwords.jpg" alt="Swords" class="center"/></h3>
     </header>
 
     <div id="practice" style="font-size:2rem;"></div>
@@ -24,10 +26,10 @@
           <h2 id="winner"></h2>
         <div id="end">
           <h2>Player has <span id="playerCount"></span> cards.</h2>
-          <h2>Computer has <span id="computerCount"></span> cards.</h2>
+          <h2>Enemy has <span id="EnemyCount"></span> cards.</h2>
         </div>
         <div id="optionSection">
-          <h2 id="mathOptions" class="button">Math Options</h2>
+          <h2 id="mathOptions" class="button">Expert Options</h2>
             <div id="options" class="hidden">
               <button id="compare">Compare</button><button id="arithmetic">Arithmetic</button>
             </div>
@@ -43,7 +45,7 @@
           <p class="compareDirections hidden">Click on the card that has a greater value.</p>
           <p class="addDirections hidden">Add the card values together.</p>
           <p class="multiplyDirections hidden">Multiply the card values together.</p>
-          <p class="subtractDirections hidden">Find Player's card value minus Computer's card value.</p>
+          <p class="subtractDirections hidden">Find Player's card value minus Enemy's card value.</p>
           <p class="integerDirections hidden">A black suit is positive. <span style="color:red">A red suit is negative.</span></p>
         </div>
 
@@ -61,7 +63,7 @@
           <p class="compareDirections hidden">Click on the card that shows a greater amount.</p>
           <p class="addDirections hidden">Add the card amounts together.</p>
           <p class="multiplyDirections hidden">Multiply the card amounts together.</p>
-          <p class="subtractDirections hidden">Player's card minus Computer's card
+          <p class="subtractDirections hidden">Player's card minus Enemy's card
           <p class="integerDirections hidden">Black suit is positive. Red suit is negative.</p>
         </div>
 
@@ -69,17 +71,17 @@
 
           <button class="hidden" id="submit">Check</button>
 
-          <h1 id="draw">Draw</h1>
+          <h1 id="draw">Battle</h1>
 
         </div>
 
-        <div id="computer" class="flexColumn player">
-          <h1 id="computerName">Enemy</h1>
-          <div id="computerNumber" class="number">
+        <div id="Enemy" class="flexColumn player">
+          <h1 id="EnemyName">Enemy</h1>
+          <div id="EnemyNumber" class="number">
           </div>
-          <div id="computerSuit" class="suit">
+          <div id="EnemySuit" class="suit">
           </div>
-        </div><!--closes computer-->
+        </div><!--closes Enemy-->
       </div><!--closes card area-->
     </div><!--closes gameboard-->
 

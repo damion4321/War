@@ -2,19 +2,19 @@ $(document).ready(function() {
 
 
 var player = [];
-var computer = [];
+var Enemy = [];
 var playedCards = [];
 var cards = [];
 var $draw = $("#draw");
 var $player = $("#player");
-var $computer = $("#computer");
+var $Enemy = $("#Enemy");
 var $playerNumber = $("#playerNumber");
-var $computerNumber = $("#computerNumber");
+var $EnemyNumber = $("#EnemyNumber");
 var $playerSuit = $("#playerSuit");
-var $computerSuit = $("#computerSuit");
+var $EnemySuit = $("#EnemySuit");
 var $winner = $("#winner");
 var $playerCount = $("#playerCount");
-var $computerCount = $("#computerCount");
+var $EnemyCount = $("#EnemyCount");
 var $playerAnswer = $("#playerAnswer");
 var $submit = $("#submit");
 var number1;
@@ -32,10 +32,10 @@ var multiplication = 0;
 var subtraction = 0;
 var arithmetic = 0;
 
-    var audio1 = new Audio('draw.mp3');
-    var audio2 = new Audio('sound.mp3');
+    var audio1 = new Audio('losingsword.mp3');
+    var audio2 = new Audio('begin.mp3');
 
-var audio = new Audio('card.mp3');
+var audio = new Audio('draw.mp3');
 
 for (i=1; i<14; i++){
   for (k=1; k<5; k++) {
@@ -68,31 +68,31 @@ for (i=0; i<half; i++) {
 
 cards.splice(0, half);
 
-computer = cards;
+Enemy = cards;
 
-$computer.unbind("click");
+$Enemy.unbind("click");
 $player.unbind("click");
 
 $playerCount.html(player.length);
-$computerCount.html(computer.length);
+$EnemyCount.html(Enemy.length);
 
 function endGame(){
 if(player.length == 0){
   $winner.html("GAME OVER </br> Enemy Wins </br> You have no more cards to play.");
 }
-if(computer.length == 0){
+if(Enemy.length == 0){
   $winner.html("GAME OVER </br> Player Wins </br> The Enemy has no more cards to play.");
 }
   $winner.css("color", "darkgrey");
   $winner.css("font-weight", "bold");
   $("#end").css("display", "none");
   $playerNumber.html("");
-  $computerNumber.html("");
+  $EnemyNumber.html("");
   $draw.off();
 }
 
 $draw.on('click', function() {
-  $("#computerName").css("color", "#000");
+  $("#EnemyName").css("color", "#000");
   $("#playerName").css("color", "#000");
   $("#optionSection").css("display", "none");
   if (arithmetic == 1) {
@@ -113,28 +113,28 @@ $submit.on('click', function(){
 function assign(){
 
   $player.css("border-color", "black");
-  $computer.css("border-color", "black");
+  $Enemy.css("border-color", "black");
 
-  if(player.length == 0 || computer.length == 0){
+  if(player.length == 0 || Enemy.length == 0){
     endGame();
   }
 
   $playerSuit.empty();
-  $computerSuit.empty();
+  $EnemySuit.empty();
 
   $playerSuit.css("display", "block");
-  $computerSuit.css("display", "block");
+  $EnemySuit.css("display", "block");
 
   number1=player[0][0];
-  number2=computer[0][0];
+  number2=Enemy[0][0];
 
   $playerNumber.html(number1);
-  $computerNumber.html(number2);
+  $EnemyNumber.html(number2);
 
   audio.play();
 
   suit1 = player[0][1];
-  suit2 = computer[0][1];
+  suit2 = Enemy[0][1];
 
 if (integerChoice == 1){
    if (suit1 == 1){
@@ -200,33 +200,33 @@ if (integerChoice == 1){
 
   if (number2<11){
     for (i=0; i<(Math.abs(number2)); i++) {
-      $computerSuit.append(suit2);
+      $EnemySuit.append(suit2);
     }
   }  else {
     if (number2 == 11 || number2 == -11) {
       numberImg2 = "<img src='./images/Jack.png'/>";
-      $computerSuit.append(suit2);
-      $computerNumber.html(numberImg2);
+      $EnemySuit.append(suit2);
+      $EnemyNumber.html(numberImg2);
     }
     if (number2 == 12 || number2 == -12) {
       numberImg2 = "<img src='./images/Queen.png'/>";
-      $computerSuit.append(suit2);
-      $computerNumber.html(numberImg2);
+      $EnemySuit.append(suit2);
+      $EnemyNumber.html(numberImg2);
     }
     if (number2 == 13 || number2 == -13) {
       numberImg2 = "<img src='./images/King.png'/>";
-      $computerSuit.append(suit2);
-      $computerNumber.html(numberImg2);
+      $EnemySuit.append(suit2);
+      $EnemyNumber.html(numberImg2);
     }
   }
 
   playedCards.push(player[0]);
-  playedCards.push(computer[0]);
+  playedCards.push(Enemy[0]);
 
   player.splice(0,1);
-  computer.splice(0,1);
+  Enemy.splice(0,1);
   $playerCount.html(player.length);
-  $computerCount.html(computer.length);
+  $EnemyCount.html(Enemy.length);
 
   greater();
 
@@ -238,11 +238,11 @@ function war() {
 
       for (i=0; i<3; i++){
         playedCards.push(player[0]);
-        playedCards.push(computer[0]);
+        playedCards.push(Enemy[0]);
         player.splice(0,1);
-        computer.splice(0,1);
+        Enemy.splice(0,1);
         $playerCount.html(player.length);
-        $computerCount.html(computer.length);
+        $EnemyCount.html(Enemy.length);
       }
 
         numberImg1 = "<img style='height:14rem;' src='./images/cards.png'/>";
@@ -251,9 +251,9 @@ function war() {
          window.setTimeout(function() {
           audio.play();
           $playerSuit.css("display", "none");
-          $computerSuit.css("display", "none");
+          $EnemySuit.css("display", "none");
           $playerNumber.html(numberImg1);
-          $computerNumber.html(numberImg2);
+          $EnemyNumber.html(numberImg2);
         }, 1800);
         window.setTimeout(function() {
           audio.play();
@@ -326,13 +326,13 @@ function submit() {
          playedCards=[];
        } else if (chosen != winner) {
          for (i=0; i<playedCards.length; i++) {
-           computer.push(playedCards[i]);
+           Enemy.push(playedCards[i]);
          }
          $winner.html("Enemy Wins Round");
          audio.currentTime=0;
          audio2.play();
-         $("#computerName").css("color", "darkgrey");
-         $computerCount.html(computer.length);
+         $("#EnemyName").css("color", "darkgrey");
+         $EnemyCount.html(Enemy.length);
          playedCards=[];
        }
      }
@@ -361,11 +361,11 @@ function greater(){
       playedCards=[];
   } else if (number2 > number1){
       $winner.html("Enemy Wins Round");
-      $computer.css("border-color", "red");
+      $Enemy.css("border-color", "red");
       for (i=0; i<playedCards.length; i++) {
-        computer.push(playedCards[i]);
+        Enemy.push(playedCards[i]);
       }
-      $computerCount.html(computer.length);
+      $EnemyCount.html(Enemy.length);
       playedCards=[];
   }
 
@@ -390,7 +390,7 @@ $("#compare").on('click', function() {
       mathCheck();
     })
 
-    $computer.on('click', function(){
+    $Enemy.on('click', function(){
       chosen = 2;
       mathCheck();
     })
